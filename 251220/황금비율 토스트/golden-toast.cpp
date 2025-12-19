@@ -9,21 +9,20 @@ int main(void) {
   int n, m;
   cin >> n >> m;
 
-  char k;
-
   while (n--) {
+    char k;
     cin >> k;
     l.push_back(k);
   }
 
-  list<char>::iterator it = --l.end();
-
-  string cmd;
+  auto it = l.end(); // iterator
 
   while (m--) {
+    string cmd;
     cin >> cmd;
+
     if (cmd == "L") {
-      if(it!= l.begin()){
+      if (it != l.begin()) {
         it--;
       }
     } else if (cmd == "R") {
@@ -31,14 +30,14 @@ int main(void) {
         it++;
       }
     } else if (cmd == "D") {
-      if (it != l.end()){
+      if (it != l.end()) {
         it = l.erase(it);
-        it--;
       }
     } else if (cmd == "P") {
       char c;
       cin >> c;
-      l.insert(++it, c);
+      it = l.insert(it, c);
+      ++it;
     }
   }
 
