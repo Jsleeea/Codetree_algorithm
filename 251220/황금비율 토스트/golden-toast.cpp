@@ -16,7 +16,7 @@ int main(void) {
     l.push_back(k);
   }
 
-  list<char>::iterator it = l.end()--;
+  list<char>::iterator it = --l.end();
 
   string cmd;
 
@@ -31,12 +31,14 @@ int main(void) {
         it++;
       }
     } else if (cmd == "D") {
-      it = l.erase(it);
-      it--;
+      if (it != l.end()){
+        it = l.erase(it);
+        it--;
+      }
     } else if (cmd == "P") {
       char c;
       cin >> c;
-      l.insert(it, c);
+      l.insert(++it, c);
     }
   }
 
