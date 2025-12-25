@@ -1,11 +1,12 @@
+#include <functional>
 #include <iostream>
-#include <algorithm>
+#include <queue>
 #include <vector>
 
 using namespace std;
 
-int main() {
-  vector<int> v;
+int main(void) {
+  priority_queue<int, vector<int>, greater<int>> pq;
 
   int n;
   cin >> n;
@@ -13,15 +14,24 @@ int main() {
   for (int i = 0; i < n; i++) {
     int x;
     cin >> x;
-    v.push_back(x);
+    pq.push(x);
   }
 
-  sort(v.begin(), v.end());
-  
+  int a, b, c;
   int sum = 0;
+
   for (int i = 0; i < n - 1; i++) {
-    sum += (v[i] + v[i + 1]);
-    v[i + 1] = (v[i] + v[i + 1]);
+    a = pq.top();
+    pq.pop();
+    b = pq.top();
+    pq.pop();
+
+    c = (a + b);
+
+    sum += c;
+
+    pq.push(c);
+
   }
 
   cout << sum;
