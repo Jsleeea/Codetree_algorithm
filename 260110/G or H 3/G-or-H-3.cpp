@@ -3,6 +3,7 @@
 using namespace std;
 
 int arr[10001];
+int ans =0;
 
 int main() {
   int n, k;
@@ -15,9 +16,16 @@ int main() {
     max_dist = max(max_dist, p);
     if (alphabet == 'G') {
       arr[p] = 1;
+      ans+=1;
     } else if (alphabet == 'H') {
       arr[p] = 2;
+      ans+=2;
     }
+  }
+
+  if (max_dist < k) {
+    cout << ans;
+    return 0;
   }
 
   int max_point = 0;
@@ -27,6 +35,7 @@ int main() {
       point += arr[j];
     }
     max_point = max(point, max_point);
+
   }
 
 
