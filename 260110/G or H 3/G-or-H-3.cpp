@@ -3,6 +3,7 @@
 using namespace std;
 
 int arr[10001];
+int ans =0;
 
 int main() {
   int n, k;
@@ -10,24 +11,21 @@ int main() {
 
   int p;
   int max_dist = 0;
-
   char alphabet;
   for (int i = 0; i < n; i++) {
     cin >> p >> alphabet;
     max_dist = max(max_dist, p);
     if (alphabet == 'G') {
       arr[p] = 1;
+      ans+=1;
     } else if (alphabet == 'H') {
       arr[p] = 2;
+      ans+=2;
     }
   }
 
   if (max_dist < k) {
-    int total_sum = 0;
-    for (int i = 1; i <= max_dist; i++) {
-      total_sum += arr[i];
-    }
-    cout << total_sum;
+    cout << ans;
     return 0;
   }
 
@@ -38,7 +36,9 @@ int main() {
       point += arr[j];
     }
     max_point = max(point, max_point);
+
   }
+
 
   cout << max_point;
 
