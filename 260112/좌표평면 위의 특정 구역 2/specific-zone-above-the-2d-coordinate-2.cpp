@@ -2,8 +2,6 @@
 #include <iostream>
 using namespace std;
 
-#define INF 1e9
-
 int arr[100][2];
 
 int main() {
@@ -14,9 +12,9 @@ int main() {
     cin >> arr[i][0] >> arr[i][1];
   }
 
-  int ans = INF;
-
-  int min_x{10000000}, max_x{0}, min_y{1000000}, max_y{0};
+  int ans;
+  
+  int min_x{40001}, max_x{0}, min_y{40001}, max_y{0};
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
       if (i == j) {
@@ -27,10 +25,14 @@ int main() {
       min_y = min(min_y, arr[j][1]);
       max_y = max(max_y, arr[j][1]);
     }
-    ans = min(ans, (max_x - min_x) * (max_y - min_y));
-    min_x = 10000000;
+    if (i == 1) {
+      ans = (max_x - min_x) * (max_y - min_y);
+    } else {
+      ans = min(ans, (max_x - min_x) * (max_y - min_y));
+    }
+    min_x = 40001;
     max_x = 0;
-    min_y = 10000000;
+    min_y = 40001;
     max_y = 0;
   }
 
