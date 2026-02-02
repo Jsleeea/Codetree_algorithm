@@ -9,7 +9,10 @@ int find(int a) { // 부모찾기
   if (a == arr[a]) {
     return a;
   }
-  return find(arr[a]);
+  int root_node = find(arr[a]);
+  arr[a] = root_node;
+
+  return root_node;
 }
 
 void uni(int a, int b) {
