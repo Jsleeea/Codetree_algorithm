@@ -2,7 +2,7 @@
 using namespace std;
 
 int uf[100001];
-// int uf_count[100001];
+int uf_count[100001];
 
 int find(int a) { // 부모찾기, 연결
   if (a == uf[a]) {
@@ -16,7 +16,8 @@ int find(int a) { // 부모찾기, 연결
 void uni(int a, int b) {
   int A = find(a);
   int B = find(b);
-  uf[A] = B;
+  uf[A] = B; // B가 부모
+  int temp = find(A);
 }
 
 int main() {
@@ -37,15 +38,17 @@ int main() {
     } else if (c == 'y') {
       int a;
       cin >> a;
-      // cout << uf_count[find(a)] << '\n';
+      //cout << uf_count[find(a)] << '\n';
+
       int cnt = 0;
+      int parent = find(a);
       for (int i = 1; i <= n; i++) {
-        if (find(a) == find(i)) {
+        if (uf[i] == parent) {
           cnt++;
         }
       }
-
       cout << cnt << '\n';
+
     }
   }
 
