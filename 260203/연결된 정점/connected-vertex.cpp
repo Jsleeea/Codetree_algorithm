@@ -1,13 +1,15 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 int uf[100001];
-int uf_count[100001];
+int sz[100001];
 
-int find(int a) { // 부모찾기, 연결
+int find(int a) {
   if (a == uf[a]) {
     return a;
   }
+
   int root_node = find(uf[a]);
   uf[a] = root_node;
   return root_node;
@@ -16,8 +18,13 @@ int find(int a) { // 부모찾기, 연결
 void uni(int a, int b) {
   int A = find(a);
   int B = find(b);
-  uf[A] = B; // B가 부모
-  int temp = find(A);
+
+  if (A == B) {
+    return;
+  }
+
+  uf[A] = B; // B밑에다가 A 붙임
+  sz[B] += sz[A];
 }
 
 int main() {
@@ -26,6 +33,7 @@ int main() {
 
   for (int i = 1; i <= n; i++) {
     uf[i] = i;
+    sz[i] = 1;
   }
 
   while (m--) {
@@ -38,17 +46,8 @@ int main() {
     } else if (c == 'y') {
       int a;
       cin >> a;
-      //cout << uf_count[find(a)] << '\n';
 
-      int cnt = 0;
-      int parent = find(a);
-      for (int i = 1; i <= n; i++) {
-        if (uf[i] == parent) {
-          cnt++;
-        }
-      }
-      cout << cnt << '\n';
-
+      cout << sz[find(a)] << '\n';
     }
   }
 
