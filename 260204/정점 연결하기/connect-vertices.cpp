@@ -34,13 +34,14 @@ int main() {
     int a, b;
     cin >> a >> b;
 
-    if (a > b) {
-      int temp = a;
-      a = b;
-      b = temp;
-    }
+    int A = find(a);
+    int B = find(b);
 
-    uni(a, b);
+    if (A > B) {
+      uni(b, a);
+    }else {
+      uni(a, b);
+    }
   }
 
   int a = find(uf[1]);
