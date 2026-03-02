@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
 
-int arr[101];
-int tmp[101];
+int arr[100001];
+int tmp[100001];
 
 void merge(int left, int mid, int right) {
   int i = left;      // 왼쪽 배열의 시작 index
