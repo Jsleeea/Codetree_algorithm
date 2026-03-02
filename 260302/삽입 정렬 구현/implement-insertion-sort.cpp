@@ -3,12 +3,6 @@ using namespace std;
 
 int arr[101];
 
-void swap(int &a, int &b) {
-  int temp = a;
-  a = b;
-  b = temp;
-}
-
 int main() {
   int n;
   cin >> n;
@@ -18,13 +12,14 @@ int main() {
   }
 
   for (int i = 1; i < n; i++) {
-    for (int j = i; j >= 0; j--) {
-      if (arr[j - 1] > arr[j]) {
-        swap(arr[j], arr[j - 1]);
-      } else {
-        break;
-      }
+    int key = arr[i];
+    int j = i - 1;
+
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j--;
     }
+    arr[j + 1] = key;
   }
 
   for (int i = 0; i < n; i++) {
